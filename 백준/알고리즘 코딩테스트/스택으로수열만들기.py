@@ -1,3 +1,5 @@
+# 1874
+
 n = int(input())
 num_list = []
 for i in range(0, n):
@@ -6,21 +8,28 @@ for i in range(0, n):
 print(num_list)
 stack_list = [1]
 stack_num = 1
+result = True
+answer_list = ""
 i = 0
 while len(stack_list) > 0:
     if num_list[i] > stack_num:
         stack_list.append(stack_num)
         print("num_list", num_list[i])
         print(stack_list, stack_num)
-        print("+")
+        answer_list = answer_list + "+\n"
         stack_num += 1
+        result = True
     elif num_list[i] <= stack_num:
-        stack_list.pop()
+        n = stack_list.pop()
         print(stack_list)
-        print("-")
+        answer_list = answer_list + "-\n"
         i += 1
-        if len(stack_list) == 0:
+        result = True
+
+        if n > stack_num:
+            print("NO")
+            result = False
             break
 
-    if len(stack_list) == 0:
-        print("NO")
+if result == True:
+    print(answer_list)
